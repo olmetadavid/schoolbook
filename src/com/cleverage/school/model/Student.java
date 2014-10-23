@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
+
 /**
  * Represent a student.
  * 
@@ -14,7 +17,6 @@ import javax.persistence.Table;
 @Table(name = "student")
 public class Student
 {
-
 	private int id;
 	private String firstname;
 	private String lastname;
@@ -24,11 +26,16 @@ public class Student
 	 */
 	public Student()
 	{
-		// Constructor used by hibernate.
+		// Default constructor for ORM System.
 	}
 
 	/**
 	 * Custom constructor.
+	 * 
+	 * @param firstname
+	 *           The first name
+	 * @param lastname
+	 *           The last name
 	 */
 	public Student(final String firstname, final String lastname)
 	{
@@ -36,34 +43,68 @@ public class Student
 		this.lastname = lastname;
 	}
 
+	/**
+	 * Unique identifier for student.
+	 * 
+	 * @return The identifier.
+	 */
 	@Id
-	@GeneratedValue(generator="increment")
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	public int getId()
 	{
 		return id;
 	}
 
-	public void setId(int id)
+	/**
+	 * Set unique identifier for student.
+	 * 
+	 * @param id
+	 *           The identifier
+	 */
+	public void setId(final int id)
 	{
 		this.id = id;
 	}
 
+	/**
+	 * Get first name of student.
+	 * 
+	 * @return The first name
+	 */
 	public String getFirstname()
 	{
 		return firstname;
 	}
 
-	public void setFirstname(String firstname)
+	/**
+	 * Set the first name of student.
+	 * 
+	 * @param firstname
+	 *           The first name
+	 */
+	public void setFirstname(final String firstname)
 	{
 		this.firstname = firstname;
 	}
 
+	/**
+	 * Get the last name of student.
+	 * 
+	 * @return The last name.
+	 */
 	public String getLastname()
 	{
 		return lastname;
 	}
 
-	public void setLastname(String lastname)
+	/**
+	 * Set the last name of student.
+	 * 
+	 * @param lastname
+	 *           The last name.
+	 */
+	public void setLastname(final String lastname)
 	{
 		this.lastname = lastname;
 	}
