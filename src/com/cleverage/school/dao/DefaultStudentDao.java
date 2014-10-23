@@ -42,7 +42,14 @@ public class DefaultStudentDao implements StudentDao
 		}
 		finally
 		{
-			session.close();
+			try
+			{
+				session.close();
+			}
+			catch (final Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		return student;
@@ -74,7 +81,14 @@ public class DefaultStudentDao implements StudentDao
 		}
 		finally
 		{
-			session.close();
+			try
+			{
+				session.close();
+			}
+			catch (final Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		return students;
@@ -107,7 +121,14 @@ public class DefaultStudentDao implements StudentDao
 		}
 		finally
 		{
-			session.close();
+			try
+			{
+				session.close();
+			}
+			catch (final Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 }

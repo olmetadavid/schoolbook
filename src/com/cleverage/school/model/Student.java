@@ -1,8 +1,11 @@
 package com.cleverage.school.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -20,6 +23,8 @@ public class Student
 	private int id;
 	private String firstname;
 	private String lastname;
+
+	private Collection<Schedule> schedules;
 
 	/**
 	 * Default empty constructor.
@@ -108,4 +113,23 @@ public class Student
 	{
 		this.lastname = lastname;
 	}
+
+	/**
+	 * @return the schedules
+	 */
+	@ManyToMany(mappedBy = "students")
+	public Collection<Schedule> getSchedules()
+	{
+		return schedules;
+	}
+
+	/**
+	 * @param schedules
+	 *           the schedules to set
+	 */
+	public void setSchedules(final Collection<Schedule> schedules)
+	{
+		this.schedules = schedules;
+	}
+
 }

@@ -53,6 +53,9 @@
 
         <!-- Names the annotated entity class -->
         <mapping class="com.cleverage.school.model.Student"/>
+        <mapping class="com.cleverage.school.model.Schedule"/>
+        <mapping class="com.cleverage.school.model.Page"/>
+        <mapping class="com.cleverage.school.model.Book"/>
 
     </session-factory>
 

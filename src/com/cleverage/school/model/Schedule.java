@@ -1,8 +1,14 @@
 package com.cleverage.school.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,6 +27,8 @@ public class Schedule
 	private int startHour;
 	private int endHour;
 	private String content;
+
+	private Collection<Student> students;
 
 	/**
 	 * Default Constructor.
@@ -116,6 +124,28 @@ public class Schedule
 	public void setContent(final String content)
 	{
 		this.content = content;
+	}
+
+	/**
+	 * @return the students
+	 */
+	@ManyToMany(cascade =
+	{ CascadeType.ALL })
+	@JoinTable(name = "schedul2student", joinColumns =
+	{ @JoinColumn(name = "student_id") }, inverseJoinColumns =
+	{ @JoinColumn(name = "schedule_id") })
+	public Collection<Student> getStudents()
+	{
+		return students;
+	}
+
+	/**
+	 * @param students
+	 *           the students to set
+	 */
+	public void setStudents(final Collection<Student> students)
+	{
+		this.students = students;
 	}
 
 }
