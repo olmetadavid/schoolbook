@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+
+import com.cleverage.school.dao.HibernateUtil;
 
 
 public class SchoolBookMain
@@ -13,8 +14,7 @@ public class SchoolBookMain
 	public static void main(final String[] args)
 	{
 		// A SessionFactory is set up once for an application
-		final SessionFactory sessionFactory = new Configuration().configure() // configures settings from hibernate.cfg.xml
-				.buildSessionFactory();
+		final SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
 
 		// create a couple of students...
 		Session session = sessionFactory.openSession();
@@ -35,5 +35,4 @@ public class SchoolBookMain
 		session.close();
 
 	}
-
 }
