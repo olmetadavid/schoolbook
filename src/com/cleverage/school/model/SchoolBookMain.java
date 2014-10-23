@@ -16,17 +16,17 @@ public class SchoolBookMain
 		final SessionFactory sessionFactory = new Configuration().configure() // configures settings from hibernate.cfg.xml
 				.buildSessionFactory();
 
-		// create a couple of events...
+		// create a couple of students...
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(new Student("David", "OLMETA"));
 		session.getTransaction().commit();
 		session.close();
 
-		// now lets pull events from the database and list them
+		// now lets pull students from the database and list them
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		final List<Student> result = session.createQuery("from Event").list();
+		final List<Student> result = session.createQuery("from Student").list();
 		for (final Student student : result)
 		{
 			System.out.println("Student: " + student.getFirstname() + " " + student.getLastname());
