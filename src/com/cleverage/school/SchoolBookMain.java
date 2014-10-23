@@ -1,7 +1,5 @@
 package com.cleverage.school;
 
-import java.util.List;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,11 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
-import com.cleverage.school.dao.HibernateUtil;
+import com.cleverage.school.dao.StudentDao;
 import com.cleverage.school.model.Student;
+import com.cleverage.school.spring.SchoolSpring;
 
 
 public class SchoolBookMain extends Application
@@ -29,17 +25,6 @@ public class SchoolBookMain extends Application
 	@Override
 	public void start(final Stage primaryStage) throws Exception
 	{
-
-		// A SessionFactory is set up once for an application
-		final SessionFactory sessionFactory = HibernateUtil.createSessionFactory();
-
-		// create a couple of students...
-		final Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.save(new Student("David", "OLMETA"));
-		session.getTransaction().commit();
-		session.close();
-
 		primaryStage.setTitle("Hello World!");
 		final Button btn = new Button();
 		btn.setText("Say 'Hello World'");
@@ -50,16 +35,10 @@ public class SchoolBookMain extends Application
 			public void handle(final ActionEvent event)
 			{
 				System.out.println("Hello World!");
-				final Session session = sessionFactory.openSession();
-				session.beginTransaction();
-				final List<Student> result = session.createQuery("from Student").list();
-				for (final Student student : result)
-				{
-					primaryStage.setTitle("Hello " + student.getFirstname() + " " + student.getLastname() + "!");
-					System.out.println("Student: " + student.getFirstname() + " " + student.getLastname());
-				}
-				session.getTransaction().commit();
-				session.close();
+				final StudentDao studentDao = (StudentDao) SchoolSpring.getInstance().getBean("studentDao");
+				final Student student = studentDao.getStudent(0);
+				primaryStage.setTitle("Hello " + student.getFirstname() + " " + student.getLastname() + "!");
+				System.out.println("Student: " + student.getFirstname() + " " + student.getLastname());
 			}
 		});
 
