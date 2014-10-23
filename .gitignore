@@ -37,7 +37,7 @@
 Icon?
 ehthumbs.db
 Thumbs.db
-
-# Output directoy #
+.settings/
+# Output directory #
 ##########################
 bin
