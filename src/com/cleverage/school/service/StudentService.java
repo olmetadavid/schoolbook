@@ -1,4 +1,4 @@
-package com.cleverage.school.dao;
+package com.cleverage.school.service;
 
 import java.util.Collection;
 
@@ -6,11 +6,11 @@ import com.cleverage.school.model.Student;
 
 
 /**
- * Base interface for student database access.
+ * Base interface for student service layer.
  *
  * @author David OLMETA
  */
-public interface StudentDao
+public interface StudentService
 {
 	/**
 	 * Get a student by id.
@@ -19,14 +19,14 @@ public interface StudentDao
 	 *           The unique id.
 	 * @return The student object.
 	 */
-	public Student findStudentById(final int id);
+	public Student getStudentForId(final int id);
 
 	/**
 	 * Get students.
 	 *
 	 * @return The students list.
 	 */
-	public Collection<Student> findStudents();
+	public Collection<Student> getStudents();
 
 
 	/**

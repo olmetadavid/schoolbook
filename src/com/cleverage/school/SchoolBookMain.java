@@ -37,7 +37,7 @@ public class SchoolBookMain extends Application
 			{
 				System.out.println("Hello World!");
 				final StudentDao studentDao = (StudentDao) SchoolSpring.getInstance().getBean("studentDao");
-				final Student student = studentDao.getStudent(0);
+				final Student student = studentDao.findStudentById(0);
 				primaryStage.setTitle("Hello " + student.getFirstname() + " " + student.getLastname() + "!");
 				System.out.println("Student: " + student.getFirstname() + " " + student.getLastname());
 			}

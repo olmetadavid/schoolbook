@@ -6,24 +6,24 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.cleverage.school.dao.HibernateUtil;
-import com.cleverage.school.dao.StudentDao;
-import com.cleverage.school.model.Student;
+import com.cleverage.school.dao.ScheduleDao;
+import com.cleverage.school.model.Schedule;
 
 
 /**
- * DAO for student.
+ * DAO for schedule.
  *
  * @author David OLMETA
  */
-public class DefaultStudentDao implements StudentDao
+public class DefaultScheduleDao implements ScheduleDao
 {
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Student findStudentById(final int id)
+	public Schedule findScheduleById(final int id)
 	{
-		Student student = null;
+		Schedule schedule = null;
 
 		// Create session.
 		Session session = null;
@@ -35,8 +35,8 @@ public class DefaultStudentDao implements StudentDao
 			// Create open session.
 			session = sessionFactory.openSession();
 
-			// Get Student.
-			student = (Student) session.get(Student.class, id);
+			// Get Page.
+			schedule = (Schedule) session.get(Schedule.class, id);
 		}
 		catch (final Exception e)
 		{
@@ -54,16 +54,16 @@ public class DefaultStudentDao implements StudentDao
 			}
 		}
 
-		return student;
+		return schedule;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Collection<Student> findStudents()
+	public Collection<Schedule> findSchedules()
 	{
-		Collection<Student> students = null;
+		Collection<Schedule> schedules = null;
 
 		// Create session.
 		Session session = null;
@@ -75,7 +75,7 @@ public class DefaultStudentDao implements StudentDao
 			// Create open session.
 			session = sessionFactory.openSession();
 
-			students = session.createQuery("from Student").list();
+			schedules = session.createQuery("from Schedule").list();
 		}
 		catch (final Exception e)
 		{
@@ -93,14 +93,14 @@ public class DefaultStudentDao implements StudentDao
 			}
 		}
 
-		return students;
+		return schedules;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void saveStudent(final Student student)
+	public void saveSchedule(final Schedule schedule)
 	{
 		// Create session.
 		Session session = null;
@@ -114,7 +114,7 @@ public class DefaultStudentDao implements StudentDao
 			session = sessionFactory.openSession();
 
 			session.beginTransaction();
-			session.save(student);
+			session.save(schedule);
 			session.getTransaction().commit();
 		}
 		catch (final Exception e)
