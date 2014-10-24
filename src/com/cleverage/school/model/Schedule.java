@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -29,6 +30,7 @@ public class Schedule
 	private String content;
 
 	private Collection<Student> students;
+	private Page page;
 
 	/**
 	 * Default Constructor.
@@ -146,6 +148,25 @@ public class Schedule
 	public void setStudents(final Collection<Student> students)
 	{
 		this.students = students;
+	}
+
+	/**
+	 * @return the page
+	 */
+	@ManyToOne
+	@JoinColumn(name = "page_id")
+	public Page getPage()
+	{
+		return page;
+	}
+
+	/**
+	 * @param page
+	 *           the page to set
+	 */
+	public void setPage(final Page page)
+	{
+		this.page = page;
 	}
 
 }

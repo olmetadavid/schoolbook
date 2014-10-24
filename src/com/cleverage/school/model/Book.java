@@ -1,8 +1,11 @@
 package com.cleverage.school.model;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -19,6 +22,8 @@ public class Book
 {
 	private int id;
 	private int year;
+
+	private Collection<Page> pages;
 
 	/**
 	 * Default Constructor.
@@ -74,6 +79,24 @@ public class Book
 	public void setYear(final int year)
 	{
 		this.year = year;
+	}
+
+	/**
+	 * @return the pages
+	 */
+	@OneToMany(mappedBy = "book")
+	public Collection<Page> getPages()
+	{
+		return pages;
+	}
+
+	/**
+	 * @param pages
+	 *           the pages to set
+	 */
+	public void setPages(final Collection<Page> pages)
+	{
+		this.pages = pages;
 	}
 
 }

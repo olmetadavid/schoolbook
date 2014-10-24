@@ -1,10 +1,14 @@
 package com.cleverage.school.model;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,6 +25,9 @@ public class Page
 {
 	private int id;
 	private Date date;
+
+	private Collection<Schedule> schedules;
+	private Book book;
 
 	/**
 	 * Default constructor.
@@ -76,6 +83,43 @@ public class Page
 	public void setDate(final Date date)
 	{
 		this.date = date;
+	}
+
+	/**
+	 * @return the schedules
+	 */
+	@OneToMany(mappedBy = "page")
+	public Collection<Schedule> getSchedules()
+	{
+		return schedules;
+	}
+
+	/**
+	 * @param schedules
+	 *           the schedules to set
+	 */
+	public void setSchedules(final Collection<Schedule> schedules)
+	{
+		this.schedules = schedules;
+	}
+
+	/**
+	 * @return the book
+	 */
+	@ManyToOne
+	@JoinColumn(name = "book_id")
+	public Book getBook()
+	{
+		return book;
+	}
+
+	/**
+	 * @param book
+	 *           the book to set
+	 */
+	public void setBook(final Book book)
+	{
+		this.book = book;
 	}
 
 }
