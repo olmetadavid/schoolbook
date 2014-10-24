@@ -22,6 +22,7 @@ public class SchoolBookMain extends Application
 		System.exit(0);
 	}
 
+	@SuppressWarnings("restriction")
 	@Override
 	public void start(final Stage primaryStage) throws Exception
 	{
