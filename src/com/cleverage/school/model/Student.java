@@ -1,19 +1,22 @@
 package com.cleverage.school.model;
 
 import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
 
 /**
  * Represent a student.
- * 
+ *
  * @author David OLMETA
  */
 @Entity
@@ -23,6 +26,7 @@ public class Student
 	private int id;
 	private String firstname;
 	private String lastname;
+	private Date dateOfBirth;
 
 	private Collection<Schedule> schedules;
 
@@ -36,21 +40,24 @@ public class Student
 
 	/**
 	 * Custom constructor.
-	 * 
+	 *
 	 * @param firstname
 	 *           The first name
 	 * @param lastname
 	 *           The last name
+	 * @param dateOfBirth
+	 *           The birthday
 	 */
-	public Student(final String firstname, final String lastname)
+	public Student(final String firstname, final String lastname, final Date dateOfBirth)
 	{
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	/**
 	 * Unique identifier for student.
-	 * 
+	 *
 	 * @return The identifier.
 	 */
 	@Id
@@ -63,7 +70,7 @@ public class Student
 
 	/**
 	 * Set unique identifier for student.
-	 * 
+	 *
 	 * @param id
 	 *           The identifier
 	 */
@@ -74,7 +81,7 @@ public class Student
 
 	/**
 	 * Get first name of student.
-	 * 
+	 *
 	 * @return The first name
 	 */
 	public String getFirstname()
@@ -84,7 +91,7 @@ public class Student
 
 	/**
 	 * Set the first name of student.
-	 * 
+	 *
 	 * @param firstname
 	 *           The first name
 	 */
@@ -95,7 +102,7 @@ public class Student
 
 	/**
 	 * Get the last name of student.
-	 * 
+	 *
 	 * @return The last name.
 	 */
 	public String getLastname()
@@ -105,7 +112,7 @@ public class Student
 
 	/**
 	 * Set the last name of student.
-	 * 
+	 *
 	 * @param lastname
 	 *           The last name.
 	 */
@@ -130,6 +137,25 @@ public class Student
 	public void setSchedules(final Collection<Schedule> schedules)
 	{
 		this.schedules = schedules;
+	}
+
+	/**
+	 * @return the dateOfBirth
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	//@Column(name = "date_of_birth")
+	public Date getDateOfBirth()
+	{
+		return dateOfBirth;
+	}
+
+	/**
+	 * @param dateOfBirth
+	 *           the dateOfBirth to set
+	 */
+	public void setDateOfBirth(final Date dateOfBirth)
+	{
+		this.dateOfBirth = dateOfBirth;
 	}
 
 }
