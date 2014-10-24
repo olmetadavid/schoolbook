@@ -72,28 +72,47 @@ public class StudentCreateFormNode extends Parent
 		GridPane.setConstraints(dateOfBirth, 1, 2);
 		components.add(dateOfBirth);
 
-		// Add the button.
+		// Add the button and prepare the message label..
 		final Button button = new Button("Save");
+		final Label messageLabel = new Label();
 		button.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override
 			public void handle(final ActionEvent event)
 			{
-				// Create a student.
-				final LocalDate localDate = dateOfBirth.getValue();
-				final Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-				final Student student = new Student(firstname.getText(), lastname.getText(), Date.from(instant));
+				try
+				{
+					// Get the date value.
+					final LocalDate localDate = dateOfBirth.getValue();
+					Instant instant = null;
+					if (localDate != null)
+					{
+						instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+					}
 
-				// Get the bean and save the student.
-				final StudentService studentService = (StudentService) SchoolSpring.getInstance().getBean("studentService");
-				studentService.saveStudent(student);
+					// Create a student.
+					final Student student = new Student(firstname.getText(), lastname.getText(), Date.from(instant));
+
+					// Get the bean and save the student.
+					final StudentService studentService = (StudentService) SchoolSpring.getInstance().getBean("studentService");
+
+					studentService.saveStudent(student);
+					messageLabel.setText("The student has been saved.");
+				}
+				catch (final Exception e)
+				{
+					messageLabel.setText(String.format("An error occured during the student saving process: %s", e.getMessage()));
+				}
 			}
 		});
 
 		GridPane.setConstraints(button, 0, 3);
 		components.add(button);
 
+		// Add a message label.
+		GridPane.setConstraints(messageLabel, 1, 3);
+		components.add(messageLabel);
+
 		getChildren().addAll(gridPane);
 	}
-
 }
