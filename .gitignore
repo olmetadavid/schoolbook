@@ -38,6 +38,8 @@ Icon?
 ehthumbs.db
 Thumbs.db
 .settings/
+.classpath
+
 # Output directory #
 ##########################
 bin
