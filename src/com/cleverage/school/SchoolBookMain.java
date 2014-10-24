@@ -13,6 +13,7 @@ import com.cleverage.school.model.Student;
 import com.cleverage.school.spring.SchoolSpring;
 
 
+@SuppressWarnings("restriction")
 public class SchoolBookMain extends Application
 {
 
@@ -22,7 +23,6 @@ public class SchoolBookMain extends Application
 		System.exit(0);
 	}
 
-	@SuppressWarnings("restriction")
 	@Override
 	public void start(final Stage primaryStage) throws Exception
 	{

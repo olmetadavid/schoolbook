@@ -82,6 +82,7 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<version>3.2</version>
 					<archive>
 						<manifest>
 							<mainClass>com.cleverage.school.SchoolBookMain</mainClass>
