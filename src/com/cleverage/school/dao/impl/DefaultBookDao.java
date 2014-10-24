@@ -5,25 +5,25 @@ import java.util.Collection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cleverage.school.dao.BookDao;
 import com.cleverage.school.dao.HibernateUtil;
-import com.cleverage.school.dao.StudentDao;
-import com.cleverage.school.model.Student;
+import com.cleverage.school.model.Book;
 
 
 /**
- * DAO for student.
+ * DAO for book.
  *
  * @author David OLMETA
  */
-public class DefaultStudentDao implements StudentDao
+public class DefaultBookDao implements BookDao
 {
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Student findStudentById(final int id)
+	public Book findBookById(final int id)
 	{
-		Student student = null;
+		Book book = null;
 
 		// Create session.
 		Session session = null;
@@ -35,8 +35,8 @@ public class DefaultStudentDao implements StudentDao
 			// Create open session.
 			session = sessionFactory.openSession();
 
-			// Get Student.
-			student = (Student) session.get(Student.class, id);
+			// Get Book.
+			book = (Book) session.get(Book.class, id);
 		}
 		catch (final Exception e)
 		{
@@ -54,16 +54,16 @@ public class DefaultStudentDao implements StudentDao
 			}
 		}
 
-		return student;
+		return book;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Collection<Student> findStudents()
+	public Collection<Book> findBooks()
 	{
-		Collection<Student> students = null;
+		Collection<Book> books = null;
 
 		// Create session.
 		Session session = null;
@@ -75,7 +75,7 @@ public class DefaultStudentDao implements StudentDao
 			// Create open session.
 			session = sessionFactory.openSession();
 
-			students = session.createQuery("from Student").list();
+			books = session.createQuery("from Book").list();
 		}
 		catch (final Exception e)
 		{
@@ -93,14 +93,14 @@ public class DefaultStudentDao implements StudentDao
 			}
 		}
 
-		return students;
+		return books;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void saveStudent(final Student student)
+	public void saveBook(final Book book)
 	{
 		// Create session.
 		Session session = null;
@@ -114,7 +114,7 @@ public class DefaultStudentDao implements StudentDao
 			session = sessionFactory.openSession();
 
 			session.beginTransaction();
-			session.save(student);
+			session.save(book);
 			session.getTransaction().commit();
 		}
 		catch (final Exception e)

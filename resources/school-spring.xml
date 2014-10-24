@@ -2,8 +2,42 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-
+	
+	<!-- Add DAOs -->
+	
 	<alias name="defaultStudentDao" alias="studentDao" />
-	<bean id="defaultStudentDao" class="com.cleverage.school.dao.DefaultStudentDao" />
+	<bean id="defaultStudentDao" class="com.cleverage.school.dao.impl.DefaultStudentDao" />
+	
+	<alias name="defaultScheduleDao" alias="scheduleDao" />
+	<bean id="defaultScheduleDao" class="com.cleverage.school.dao.impl.DefaultScheduleDao" />
+	
+	<alias name="defaultPageDao" alias="pageDao" />
+	<bean id="defaultPageDao" class="com.cleverage.school.dao.impl.DefaultPageDao" />
+	
+	<alias name="defaultBookDao" alias="bookDao" />
+	<bean id="defaultBookDao" class="com.cleverage.school.dao.impl.DefaultBookDao" />
+	
+	
+	<!-- Add Services -->
+	
+	<alias name="defaultStudentService" alias="studentService" />
+	<bean id="defaultStudentService" class="com.cleverage.school.service.impl.DefaultStudentService">
+		<property name="studentDao" ref="studentDao"/>
+	</bean>
+	
+	<alias name="defaultScheduleService" alias="scheduleService" />
+	<bean id="defaultScheduleService" class="com.cleverage.school.service.impl.DefaultScheduleService">
+		<property name="scheduleDao" ref="scheduleDao"/>
+	</bean>
+	
+	<alias name="defaultPageService" alias="pageService" />
+	<bean id="defaultPageService" class="com.cleverage.school.service.impl.DefaultPageService">
+		<property name="pageDao" ref="pageDao"/>
+	</bean>
+	
+	<alias name="defaultBookService" alias="bookService" />
+	<bean id="defaultBookService" class="com.cleverage.school.service.impl.DefaultBookService">
+		<property name="bookDao" ref="bookDao"/>
+	</bean>
 
 </beans>

@@ -6,24 +6,24 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.cleverage.school.dao.HibernateUtil;
-import com.cleverage.school.dao.StudentDao;
-import com.cleverage.school.model.Student;
+import com.cleverage.school.dao.PageDao;
+import com.cleverage.school.model.Page;
 
 
 /**
- * DAO for student.
+ * DAO for page.
  *
  * @author David OLMETA
  */
-public class DefaultStudentDao implements StudentDao
+public class DefaultPageDao implements PageDao
 {
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Student findStudentById(final int id)
+	public Page findPageById(final int id)
 	{
-		Student student = null;
+		Page page = null;
 
 		// Create session.
 		Session session = null;
@@ -35,8 +35,8 @@ public class DefaultStudentDao implements StudentDao
 			// Create open session.
 			session = sessionFactory.openSession();
 
-			// Get Student.
-			student = (Student) session.get(Student.class, id);
+			// Get Page.
+			page = (Page) session.get(Page.class, id);
 		}
 		catch (final Exception e)
 		{
@@ -54,16 +54,16 @@ public class DefaultStudentDao implements StudentDao
 			}
 		}
 
-		return student;
+		return page;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Collection<Student> findStudents()
+	public Collection<Page> findPages()
 	{
-		Collection<Student> students = null;
+		Collection<Page> pages = null;
 
 		// Create session.
 		Session session = null;
@@ -75,7 +75,7 @@ public class DefaultStudentDao implements StudentDao
 			// Create open session.
 			session = sessionFactory.openSession();
 
-			students = session.createQuery("from Student").list();
+			pages = session.createQuery("from Page").list();
 		}
 		catch (final Exception e)
 		{
@@ -93,14 +93,14 @@ public class DefaultStudentDao implements StudentDao
 			}
 		}
 
-		return students;
+		return pages;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void saveStudent(final Student student)
+	public void savePage(final Page page)
 	{
 		// Create session.
 		Session session = null;
@@ -114,7 +114,7 @@ public class DefaultStudentDao implements StudentDao
 			session = sessionFactory.openSession();
 
 			session.beginTransaction();
-			session.save(student);
+			session.save(page);
 			session.getTransaction().commit();
 		}
 		catch (final Exception e)
