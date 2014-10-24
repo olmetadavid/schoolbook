@@ -1,10 +1,12 @@
-package com.cleverage.school.dao;
+package com.cleverage.school.dao.impl;
 
 import java.util.Collection;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.cleverage.school.dao.HibernateUtil;
+import com.cleverage.school.dao.StudentDao;
 import com.cleverage.school.model.Student;
 
 
